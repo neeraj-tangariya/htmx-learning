@@ -19,7 +19,12 @@ const createHomepageTemplate = () => /*html*/ `
 
         <div class="add-book-form">
           <h2>What do you want to read?</h2>
-          <form>
+          <form 
+              hx-post="/books" 
+              hx-on::after-request="document.querySelector('form').reset()"
+              hx-target=".book-list ul" 
+              hx-swap="beforeend"
+            >
             <input 
               id="title" 
               name="title"
@@ -32,13 +37,7 @@ const createHomepageTemplate = () => /*html*/ `
               placeholder="author" 
               type="text" 
             />
-            <button 
-              hx-post="/books" 
-              hx-target=".book-list ul" 
-              hx-swap="beforeend"
-              hx-on:click="console.log('new book added', event)"
-              hx-on::after-request="document.querySelector('form').reset()"
-              >Add</button>
+            <button>Add</button>
           </form>
         </div>
       </main>
