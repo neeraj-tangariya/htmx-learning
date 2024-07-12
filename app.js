@@ -1,4 +1,5 @@
 import express from "express";
+import createHomepageTemplate from "./views/index.js";
 
 // create app
 const app = express();
@@ -9,7 +10,7 @@ app.use(express.static("public"));
 
 // routes
 app.get("/", (req, res) => {
-  res.send();
+  res.send(createHomepageTemplate());
 });
 
 // listen to port
